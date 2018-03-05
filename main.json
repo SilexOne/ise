@@ -1,0 +1,32 @@
+{
+	"0":{
+		"name": "production",
+		"services": {
+			"dns": 1,
+			"ad": 0,
+			"http": 0,
+			"https": 0,
+			"webmail-http": 0,
+			"smtp": 0,
+			"pop3": 0,
+			"imap": 0,
+			"ftp": 0,
+			"sql": 0
+		}
+	},
+	"1":{ 
+		"name": "testing",
+		"services": {
+			"dns": 1,
+			"ad": 0,
+			"http": 0,
+			"https": 0,
+			"webmail-http": 0,
+			"smtp": 0,
+			"pop3": 0,
+			"imap": 0,
+			"ftp": 0,
+			"sql": 0
+		}
+	}
+}

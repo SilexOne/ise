@@ -1,19 +1,38 @@
 # TODO: test working, some working some failing, all failing, create try blocks
 # TODO: Implement logging
+# TODO: Docstrings
 import sqlite3
+import shutil
+import sys # TODO: Delete id not used
+from os import path
+from datetime import datetime
 
 
 # TODO: Called from main, to setup the the sqlite database
 class ise_database():
+	"""
+	TODO: Docstrings
+	"""
 	def __init__(self):
-		self.connection = None
-		self.cursor = None
-
-	def init_db(self):
-		# TODO: delete any databases in the folder
-		self.connection = sqlite3.connect("ise.db") # TODO: ise.db, TODO: absoulte path needed when main uses this
+		"""
+		TODO: Docstrings
+		"""
+		# TODO: Move any database into a backup folder, then delete any databases in this folder
+		self.dir_path = path.dirname(path.realpath(__file__))
+		self.abs_path = path.join(self.dir_path, 'ise.db')
+		self.new_abs_file_path = path.join(path.join(path.dirname(self.dir_path), "backup"), str(datetime.now().strftime('%Y-%m-%dT%H-%M-%S') + '.db'))
+		try:
+			shutil.move(self.abs_path, self.new_abs_file_path)
+		except OSError as e:
+			# TODO: Find a better way
+			pass
+		self.connection = sqlite3.connect(self.abs_path)
 		self.cursor = self.connection.cursor()
 
+	def init_table(self, service):
+		"""
+		TODO: Docstrings
+		"""
 		# TODO: Have the main config only create those being used
 		"""
 		|      id       |   epoch    | status |
@@ -23,14 +42,17 @@ class ise_database():
 		| 3             | 1519939279 |   1    |
 		"""
 		sql_command = """
-			CREATE TABLE IF NOT EXISTS dns (
+			CREATE TABLE IF NOT EXISTS {} (
 			id INTEGER PRIMARY KEY,
 			epoch timestamp DEFAULT (strftime('%s', 'now')),
-			status INTEGER);"""
+			status INTEGER);""".format(service)
 		self.cursor.execute(sql_command) # TODO: Logging
 
 
 	def commit_to_sqlite(self, service, status):
+		"""
+		TODO: Docstrings
+		"""
 		sql_command = """
 			INSERT INTO {0} (status)
 		    VALUES ({1});""".format(service, status)
@@ -38,19 +60,24 @@ class ise_database():
 		self.connection.commit() # TODO: Logging
 
 	def query_service_db(self, service):
-		self.cursor.execute("SELECT * FROM dns".format(service))
+		"""
+		TODO: Docstrings
+		"""
+		self.cursor.execute("SELECT * FROM {}".format(service))
 		all_rows = self.cursor.fetchall()
 		for row in all_rows:
 			print('{0} | {1} | {2}'.format(row[0], row[1], row[2]))
 
+	def query_last_service_db(self, service):
+		"""
+		TODO: Docstrings
+		"""
+		self.cursor.execute("SELECT * FROM {}".format(service))
+		all_rows = self.cursor.fetchall()
+		print('{0} | {1} | {2}'.format(all_rows[-1][0], all_rows[-1][1], all_rows[-1][2]))
+
 	def close_db(self):
+		"""
+		TODO: Docstrings
+		"""
 		self.connection.close()
-
-
-# TODO: Delete when finished
-if __name__ == '__main__':
-	a = ise_database()
-	a.init_db()
-	a.commit_to_sqlite("dns", 1)
-	a.query_service_db("dns")
-	a.close_db()
