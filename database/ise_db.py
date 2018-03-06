@@ -17,7 +17,7 @@ class ise_database():
 		"""
 		TODO: Docstrings
 		"""
-		# TODO: Move any database into a backup folder, then delete any databases in this folder
+		# Move the database into the backup folder, and make a new database
 		self.dir_path = path.dirname(path.realpath(__file__))
 		self.abs_path = path.join(self.dir_path, 'ise.db')
 		self.new_abs_file_path = path.join(path.join(path.dirname(self.dir_path), "backup"), str(datetime.now().strftime('%Y-%m-%dT%H-%M-%S') + '.db'))
