@@ -20,7 +20,6 @@ class domain_name_system():
 		"""
 		# Once this object is created have a new sqlite table created for the service
 		database.init_table("dns")
-		logging.info("The dns table was created in the ise.db")
 		
 		# We need to get the parent directory of this file
 		# in order to import the config JSON for this service
@@ -72,4 +71,4 @@ class domain_name_system():
 		sqlite_result = 1 if all(result) else 0
 
 		database.commit_to_sqlite("dns", sqlite_result)
-		database.query_last_service_db("dns") # TODO: Logging
+		#database.query_last_service_db("dns") # TODO: Logging

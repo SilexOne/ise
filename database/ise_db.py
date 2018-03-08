@@ -3,7 +3,8 @@
 # TODO: Docstrings
 import sqlite3
 import shutil
-import sys # TODO: Delete id not used
+import logging
+import sys
 from os import path
 from datetime import datetime
 
@@ -46,8 +47,11 @@ class ise_database():
 			id INTEGER PRIMARY KEY,
 			epoch timestamp DEFAULT (strftime('%s', 'now')),
 			status INTEGER);""".format(service)
-		self.cursor.execute(sql_command) # TODO: Logging
-
+		try:
+			self.cursor.execute(sql_command)
+			logging.info("Created the {} table".format(service))	
+		except:
+			logging.error("Unable to create the {} table".format(service))	
 
 	def commit_to_sqlite(self, service, status):
 		"""
@@ -56,10 +60,14 @@ class ise_database():
 		sql_command = """
 			INSERT INTO {0} (status)
 		    VALUES ({1});""".format(service, status)
-		self.cursor.execute(sql_command)
-		self.connection.commit() # TODO: Logging
+		try:
+			self.cursor.execute(sql_command)
+			self.connection.commit() # TODO: Logging
+			logging.debug("Inserted result of {} into the {} table".format(status, service))
+		except:
+			logging.error("Unable to insert result of {} into the {} table".format(status, service))
 
-	def query_service_db(self, service):
+	def query_service_table(self, service):
 		"""
 		TODO: Docstrings
 		"""
@@ -68,7 +76,7 @@ class ise_database():
 		for row in all_rows:
 			print('{0} | {1} | {2}'.format(row[0], row[1], row[2]))
 
-	def query_last_service_db(self, service):
+	def query_last_service_table(self, service):
 		"""
 		TODO: Docstrings
 		"""
@@ -81,3 +89,4 @@ class ise_database():
 		TODO: Docstrings
 		"""
 		self.connection.close()
+		logging.info("Database connection closed")
