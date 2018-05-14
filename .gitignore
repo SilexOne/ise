@@ -1,3 +1,13 @@
 # Databases #
 #############
 *.db
+
+# Python #
+##########
+*.pyc
+__pycache__/
+
+# PyCharm #
+###########
+.DS_Store
+.idea
