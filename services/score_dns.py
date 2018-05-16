@@ -1,4 +1,3 @@
-# TODO: Implement logging for service
 import logging
 from dns import resolver, reversename
 from settings import data, collect
@@ -16,6 +15,7 @@ def verify(item, dns_config):
         else:
             return False
     except:
+        logging.exception("Ran into error trying to verify DNS addresses and hostnames")
         return False
 
 @collect(data.get('services').get('dns').get('enabled'))
