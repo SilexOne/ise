@@ -1,6 +1,6 @@
 import logging
 from dns import resolver, reversename
-from settings import data, collect
+from utils.settings import data, collect
 
 
 def verify(item, dns_config):

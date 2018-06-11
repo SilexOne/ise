@@ -3,7 +3,7 @@ from database import sse_db
 from datetime import datetime, timedelta
 from utils.sse_logging import logging
 from utils.settings import scoring, data
-
+from services import score_dns # TODO: Find a better way, this gets the decorator on the dns to work
 
 def main():
     logging.info("Service Scoring Engine started")
