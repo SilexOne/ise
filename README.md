@@ -208,6 +208,3 @@ If you want to test another service that isn't in SSE by default you can easily 
 
     # Pretty much repeat step 3 with the changes and git add, and step 4 if applicable 
     ```
-    
-  
- and make your changes then do pull request.
