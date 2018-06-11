@@ -33,7 +33,7 @@ A python 3 program used to test various service uptimes for a given network infr
     - Production: This mode is used to score a team on their network infrastructure 
     - Testing: This mode is primarily used for troubleshooting
 
-    ```json
+    ```
     {
       "0": {
         "name": "production",
@@ -51,7 +51,7 @@ A python 3 program used to test various service uptimes for a given network infr
     - `logging`: This sets the logging level for SSE 
     - `timeframe`: This sets how long SSE will score for
     - `services`: This will hold all the service settings
-    ```json
+    ```
      "1": {
         "name": "testing",
         "logging": "DEBUG",
@@ -68,7 +68,7 @@ A python 3 program used to test various service uptimes for a given network infr
 4. View and configure `services`:
     - `enabled`: Determines if the SSE will score that service
     - Other Settings: Specific configuration settings to test
-    ```json
+    ```
     "1": {
     "name": "testing",
     "logging": "DEBUG",
@@ -100,7 +100,7 @@ A python 3 program used to test various service uptimes for a given network infr
 ##### Service Test
 If you want to test another service that isn't in SSE by default you can easily add one yourself.
 1. Within `main.json` add a service in `services` with the appropriate settings in both modes.
-    ```json
+    ```
       "0": {
         "name": "production",
         "logging": "INFO",

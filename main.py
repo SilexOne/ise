@@ -1,10 +1,8 @@
 import time
-import logging
-import sse_logging  # TODO: Implement logging the right way
-from datetime import datetime, timedelta
-from settings import scoring, data
 from database import sse_db
-from services import score_dns  # TODO: Find a better way
+from datetime import datetime, timedelta
+from utils.sse_logging import logging
+from utils.settings import scoring, data
 
 
 def main():
@@ -38,7 +36,7 @@ def main():
     # Once the appropriate amount of time has elapsed close the
     # connection to the database
     # TODO: Indicate end of scoring
-    database.close_db()  # TODO: Ensure the connection is closed
+    database.close_db()
     logging.info("Service Scoring Engine has finished")
 
 
