@@ -130,4 +130,84 @@ If you want to test another service that isn't in SSE by default you can easily 
 3. Run the program and the service should be added.
     
 ##### Github
-Fork the project from github and make your changes then do pull request.
+1.  Fork the project from github.
+2.  Set the upstream repository.
+
+    ```bash
+    # Sets your git project upstream to this repository
+    $ git remote add upstream https://github.com/SilexOne/ise.git
+    ```
+
+3. Ensure your fork's master mirrors the upstream repository. 
+   That means you should not make any changes to your master, 
+   all you need to create branches off it. You will also need to
+   update your master when new changes occur in the overall project.
+   
+   ```bash
+   # Updates your master branch to be the same as the upstream repository
+   # Run this specific command everytime the upstream repository changes
+   $ git pull upstream master
+   
+   # Show which branch you are on
+   $ git branch
+   * master
+
+   # Create a new branch and use it
+   $ git checkout -b new-branch-your-creating
+   
+   # Verify you are using that new branch
+   $ git branch
+     master
+   * new-branch-your-creating
+
+   # Make changes and add to the project
+   
+   # Add and commit the new changes
+   $ git add .
+   $ git commit - m "your commit message"
+
+   # Push your branch to your github
+   $ git push origin new-branch-your-creating
+
+   # Go to github and do a pull request
+   # Then wait for it to be merged in or denied
+   ```
+ 
+ 4. How to merge your branch if you run into a merge conflict.
+ 
+    ```bash
+    # Updates your master branch to be the same as the upstream repository
+    $ git pull upstream master
+   
+    # Your branch will rebase off the new master branch
+    $ git rebase master new-branch-your-creating
+    ```
+    
+ 5. If your branch was merged in and you want to keep contributing.
+ 
+    ```bash
+    # Updates your master branch to be the same as the upstream repository
+    $ git pull upstream master
+
+    # Switch back to master
+    $ git checkout master
+
+    # Verify you are on master
+    $ git branch
+    * master
+      new-branch-your-creating
+
+    # Branch off master
+    $ git checkout -b another-branch-you-created
+
+    # Verify you are on that branch
+    $ git branch
+      master
+      new-branch-your-creating
+    * another-branch-you-created
+
+    # Pretty much repeat step 3 with the changes and git add, and step 4 if applicable 
+    ```
+    
+  
+ and make your changes then do pull request.
