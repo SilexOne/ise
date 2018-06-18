@@ -1,11 +1,11 @@
 import time
-# This 'import services' calls the __init__.py in services and imports everything in the directory
-# which runs the decrators to collect all the functions
-import services
 from database import sse_db
 from datetime import datetime, timedelta
 from utils.sse_logging import logging
 from utils.settings import scoring, data
+# This 'import services' calls the __init__.py in services and imports everything in the directory
+# which runs the decrators to collect all the functions
+import services
 
 def main():
     logging.info("Service Scoring Engine started")

@@ -17,7 +17,7 @@ A python 3 program used to test various service uptimes for a given network infr
 1. Git clone this repository:
     - `git clone https://github.com/SilexOne/ise.git`
 2. Run the install script:
-    - `./ise_setup.sh`
+    - `./sse_setup.sh`
 3. Configure the JSON file to your network:
     - The `main.json` chooses if your testing or actually scoring your services and enables which ones you want to use.
 4. Run the program:
@@ -110,7 +110,7 @@ If you want to test another service that isn't in SSE by default you can easily 
         "services": {
           "dns": {
             ...
-          }
+          },
     ----> "YOUR_SERVICE_NAME": {
     ---->   "enabled": 1,
     ---->   "SETTINGS_USED_IN_THE_PYTHON_FILE": "something"
@@ -131,14 +131,20 @@ If you want to test another service that isn't in SSE by default you can easily 
     
 ##### Github
 1.  Fork the project from github.
-2.  Set the upstream repository.
+2.  Git clone the repository.
+
+    ```bash
+    $ git clone git@github.com:<YOUR_USERNAME_FOR_GITHUB>/ise.git
+    ```
+ 
+3.  Set the upstream repository.
 
     ```bash
     # Sets your git project upstream to this repository
     $ git remote add upstream https://github.com/SilexOne/ise.git
     ```
 
-3. Ensure your fork's master mirrors the upstream repository. 
+4. Ensure your fork's master mirrors the upstream repository. 
    That means you should not make any changes to your master, 
    all you need to create branches off it. You will also need to
    update your master when new changes occur in the overall project.

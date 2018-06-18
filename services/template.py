@@ -17,7 +17,10 @@ def A_NAME_THAT_PERTAINS_TO_YOUR_SERVICE_TEST():
     # Best practice to have error checking with logging
     #
     # try:
+    #     service.specific.logic = 1
     #     a = 1/0
+    # except service.exception.class:
+    #     logging.warning("Looks like your service failed because the service is actually not working. Git Gud!")
     # except:
     #     logging.exception("Oh no! you divided by 0")
     #

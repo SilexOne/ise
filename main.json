@@ -24,15 +24,33 @@
           "mgmt.wcsc.com": "172.20.241.100"
         }
       },
-      "ad": 0,
-      "http": 0,
-      "https": 0,
-      "webmail-http": 0,
-      "smtp": 0,
-      "pop3": 0,
-      "imap": 0,
-      "ftp": 0,
-      "sql": 0
+      "ad": {
+        "enabled": 0
+      },
+      "http": {
+        "enabled": 0
+      },
+      "https": {
+        "enabled": 0
+      },
+      "webmail-http": {
+        "enabled": 0
+      },
+      "smtp": {
+        "enabled": 0
+      },
+      "pop3": {
+        "enabled": 0
+      },
+      "imap": {
+        "enabled": 0
+      },
+      "ftp": {
+        "enabled": 0
+      },
+      "sql": {
+        "enabled": 0
+      }
     }
   },
   "1": {
