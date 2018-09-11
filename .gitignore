@@ -11,3 +11,7 @@ __pycache__
 ###########
 .DS_Store
 .idea
+
+# Avoid Conflicts #
+###################
+main.json

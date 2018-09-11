@@ -3,23 +3,21 @@ import sys
 import json
 import logging
 # Create a global variable that can be passed to other
-# files so collect and can add functions to it
-global scoring
-global data
+# files so collect can add functions to scoring
 scoring = []
-data = {}
+# Get the contents from the main.json which will act as the config file
+data = json.load(open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'main.json')))
+
 
 # Make this a decorator on all services so the
 # function can be added to the global variable
 def collect(enabled):
     def real_decorator(func):
-        if not(enabled == 0 or enabled == 1):
-            logging.exception("The decorator argument on {} service function must be either a 1 or 0, "
-                              "check the JSON configuration file to ensure that it\'s correct".format(func.__name__))
-            sys.exit()
-        if enabled:
+        if not(enabled == '0' or enabled == '1'):
+            logging.exception("The decorator argument on {} service function must "
+                              "be either a '1' or '0', check the JSON configuration "
+                              "file to ensure that it\'s correct".format(func.__name__))
+            sys.exit(1)
+        if enabled == '1':
             scoring.append(func)
     return real_decorator
-
-# Get the contents from the main.json which will act as the config file
-data = json.load(open(os.path.join(os.getcwd(), 'main.json'))).get("1")
